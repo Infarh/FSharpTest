@@ -25,7 +25,7 @@ namespace FSharpTest
 
             var titles =
                 from url in urls
-                from page in WebClawer(url)
+                from page in WebCrawler(url)
                 select (page.url, title: GetTitle(page.content));
 
             foreach (var (url, title) in titles)
@@ -67,7 +67,7 @@ namespace FSharpTest
                 ? match.Groups[GroupName].Value
                 : Default;
 
-        private static IEnumerable<(string url, string content)> WebClawer(string url)
+        private static IEnumerable<(string url, string content)> WebCrawler(string url)
         {
             var result = (url, content: GetWebContent(url));
             yield return result;
