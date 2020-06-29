@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Memoizer.fs" />
     <Compile Include="FunctionService.fs" />
     <Compile Include="Sort.fs" />
     <Compile Include="Say.fs" />
