@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 
 namespace FSharpTest
@@ -7,6 +8,13 @@ namespace FSharpTest
     internal static class MemorizeTests
     {
         public static void Run()
+        {
+            TimingTest();
+
+            Console.ReadLine();
+        }
+
+        private static void TimingTest()
         {
             static string GetString(string str) => $"{str} {DateTime.Now:HH:mm:ss}";
             Func<string, string> get_str = GetString;
@@ -26,8 +34,6 @@ namespace FSharpTest
             Console.WriteLine(mem_str("v2"));
             Thread.Sleep(2000);
             Console.WriteLine(mem_str("v1"));
-
-            Console.ReadLine();
         }
 
         private static Func<T, TResult> Memorize<T, TResult>(this Func<T, TResult> func)
