@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace WpfTest
