@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSharpTest", "FSharpTest\FSharpTest.csproj", "{A486F745-3F0F-4BDD-B77E-F51EF5BC4B1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FSharpTest", "FSharpTest\FSharpTest.csproj", "{A486F745-3F0F-4BDD-B77E-F51EF5BC4B1B}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharpLib", "FSharpLib\FSharpLib.fsproj", "{E19FF0A1-F0DC-48AC-B214-F0D5D01353DA}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "FSharpLib", "FSharpLib\FSharpLib.fsproj", "{E19FF0A1-F0DC-48AC-B214-F0D5D01353DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpLib", "CSharpLib\CSharpLib.csproj", "{3931AC74-B488-461F-949D-C6FBC406B2A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSharpLib", "CSharpLib\CSharpLib.csproj", "{3931AC74-B488-461F-949D-C6FBC406B2A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfTest", "WpfTest\WpfTest.csproj", "{2D498B46-A3BF-44EC-A027-D808E0026BA4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{3931AC74-B488-461F-949D-C6FBC406B2A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3931AC74-B488-461F-949D-C6FBC406B2A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3931AC74-B488-461F-949D-C6FBC406B2A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D498B46-A3BF-44EC-A027-D808E0026BA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D498B46-A3BF-44EC-A027-D808E0026BA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D498B46-A3BF-44EC-A027-D808E0026BA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D498B46-A3BF-44EC-A027-D808E0026BA4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

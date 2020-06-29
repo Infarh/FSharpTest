@@ -1,0 +1,18 @@
+﻿<Window x:Class="WpfTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfTest"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Top">
+            <Button DockPanel.Dock="Right" VerticalAlignment="Center" Margin="5,0" Padding="35,5" Click="OnLoadButtonClick">Load</Button>
+            <GroupBox Header="URL">
+                <TextBox Name="UrlInput" Text="https://avatars.mds.yandex.net/get-pdb/2979185/1bcd6dc8-356d-4e87-aba3-fc9e91ccfc81/s1200"/>
+            </GroupBox>
+        </DockPanel>
+        <Image Name="img" Margin="5"/>
+    </DockPanel>
+</Window>

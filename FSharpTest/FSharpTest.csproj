@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-rc0003" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CSharpLib\CSharpLib.csproj" />
     <ProjectReference Include="..\FSharpLib\FSharpLib.fsproj" />
   </ItemGroup>
