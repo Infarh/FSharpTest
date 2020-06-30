@@ -7,12 +7,19 @@ namespace CSharpLib
     public static class FuncService
     {
         public static Func<TValue, TResult> Compose<TValue, TArgument, TResult>(
-            this Func<TValue, TArgument> GetArgument,
-            Func<TArgument, TResult> GetResult) =>
+            this Func<TValue, TArgument> GetArgument, 
+            Func<TArgument, TResult> GetResult) => 
             value => GetResult(GetArgument(value));
 
+        public static Func<T, TResult> MemorizeThreadSafeLazy<T, TResult>(this Func<T, TResult> func)
+            where T : IComparable
+        {
+            var cache = new ConcurrentDictionary<T, Lazy<TResult>>();
+            return arg => cache.GetOrAdd(arg, v => new Lazy<TResult>(() => func(v))).Value;
+        }
+
         public static Func<T, TResult> MemorizeThreadSafe<T, TResult>(this Func<T, TResult> func)
-           where T : IComparable
+            where T : IComparable
         {
             var cache = new ConcurrentDictionary<T, TResult>();
             return arg => cache.GetOrAdd(arg, func);
