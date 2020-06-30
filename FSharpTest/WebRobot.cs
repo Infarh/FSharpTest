@@ -101,9 +101,9 @@ namespace FSharpTest
         }
 
         private static readonly Func<string, string> GetWebContentMemorized =
-            FuncService.Memorize<string, string>(GetWebContent);
+            FuncService.MemorizeThreadSafe<string, string>(GetWebContent);
 
         private static readonly Func<string, IEnumerable<(string url, string content)>> WebCrawlerMemorized =
-            FuncService.Memorize<string, IEnumerable<(string url, string content)>>(WebCrawler);
+            FuncService.MemorizeThreadSafe<string, IEnumerable<(string url, string content)>>(WebCrawler);
     }
 }

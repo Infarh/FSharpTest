@@ -28,7 +28,7 @@ namespace FSharpTest
 
             Console.WriteLine(new string('-', Console.BufferWidth));
 
-            var mem_str = get_str.Memorize();
+            var mem_str = get_str.MemorizeThreadSafe();
 
             Console.WriteLine(mem_str("v1"));
             Thread.Sleep(2000);
