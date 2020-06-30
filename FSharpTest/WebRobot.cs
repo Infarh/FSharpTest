@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Net;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using CSharpLib;
@@ -28,38 +26,22 @@ namespace FSharpTest
                 "http://www.google.com",
             };
 
-            var timer = new Stopwatch();
-            var times = new List<(string url, double time)>();
-
             string ProcessUrl(string url, int i)
             {
-                Console.WriteLine("[{1} / {2}]>>>>>{0}<<<<<", url, i + 1, urls.Length);
-                Console.Title = $"[{i + 1} / {urls.Length}]:{url}";
-                if (timer.IsRunning)
-                {
-                    Console.WriteLine("Elapsed time: {0:0.##}c", timer.Elapsed.TotalSeconds);
-                    times.Add((urls[i - 1], timer.Elapsed.TotalSeconds));
-                    timer.Reset();
-                }
-                else
-                    timer.Start();
+                Console.WriteLine("[{1}/{2}]>>>>>{0}<<<<<", url, i + 1, urls.Length);
+                Console.Title = $"[{i + 1}/{urls.Length}]:{url}";
                 return url;
             }
 
             var titles =
-                from url in urls.Select(ProcessUrl)
+                from url in urls.Select(ProcessUrl).AsParallel()
                 from page in WebCrawlerMemorized(url)
                 select (page.url, title: GetTitle(page.content));
 
             foreach (var (url, title) in titles)
                 Console.WriteLine("{0}:\t{1}", url, title);
 
-            timer.Stop();
-            times.Add((urls[^1], timer.Elapsed.TotalSeconds));
-
             Console.WriteLine(new string('-', Console.BufferWidth));
-
-            times.ForEach(v => Console.WriteLine("{0}\t::\t{1}", v.url, v.time));
         }
 
         private sealed class TestWebClient : WebClient

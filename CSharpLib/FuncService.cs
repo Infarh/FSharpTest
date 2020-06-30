@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 
 namespace CSharpLib
@@ -13,11 +14,13 @@ namespace CSharpLib
         public static Func<T, TResult> Memorize<T, TResult>(this Func<T, TResult> func)
             where T : IComparable
         {
-            var cache = new Dictionary<T, TResult>();
-            return arg => GetOrAdd(cache, arg, func);
+            //var cache = new Dictionary<T, TResult>();
+            //return arg => GetOrAddValue(cache, arg, func);
+            var cache = new ConcurrentDictionary<T, TResult>();
+            return arg => cache.GetOrAdd(arg, func);
         }
 
-        private static TValue GetOrAdd<TKey, TValue>(this IDictionary<TKey, TValue> dict, TKey key, Func<TKey, TValue> func)
+        private static TValue GetOrAddValue<TKey, TValue>(this IDictionary<TKey, TValue> dict, TKey key, Func<TKey, TValue> func)
         {
             if (dict.TryGetValue(key, out var value))
                 return value;
