@@ -11,4 +11,8 @@
     <Compile Include="Say.fs" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AlgorithmsLib\AlgorithmsLib.csproj" />
+  </ItemGroup>
+
 </Project>
