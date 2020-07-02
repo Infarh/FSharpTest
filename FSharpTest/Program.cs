@@ -11,7 +11,7 @@ namespace FSharpTest
             var finder = StringTools.FuzzyMatch(ListModule.OfSeq(words));
             var result = finder.Invoke("Halo");
 
-            var r2 = StringTools.WordsListFuzzyMatch.Invoke("Halo");
+            var r2 = StringTools.WordsListFuzzyMatchPSeq.Invoke("Halo");
         }
     }
 }
