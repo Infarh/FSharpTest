@@ -15,6 +15,8 @@ namespace AlgorithmsLib
         public static double Distance(string Str1, string Str2, double WeightThreshold = 0.7, int PrefixLength = 4, IEqualityComparer<char> CharComparer = null) =>
             1.0 - Proximity(Str1, Str2, WeightThreshold, PrefixLength, CharComparer);
 
+        public static double GetMatch(string Str1, string Str2) => Proximity(Str1, Str2);
+
         /// <summary>Вычисление сходства двух строк на основе метрики Джаро — Винклера</summary>
         /// <param name="Str1">Сравниваемая строка</param>
         /// <param name="Str2">Сравниваемая строка</param>
