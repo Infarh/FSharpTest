@@ -29,11 +29,12 @@ module StringTools =
     let FuzzyMathPSeq (words:string list) =
         let words_set = new HashSet<string>(words)
         fun word ->
-            let (_, word) = (words_set 
-                    |> PSeq.map(fun w -> JaroWinklerGetMatch w word) 
-                    |> PSeq.sortBy Distance 
-                    |> Seq.head)
-            word
+            let (_, prototype) = 
+                words_set 
+                |> PSeq.map(fun w -> JaroWinklerGetMatch w word) 
+                |> PSeq.sortBy Distance 
+                |> Seq.head
+            prototype
 
     let WordsListFuzzyMatchPSeq = FuzzyMathPSeq WordsList
 
