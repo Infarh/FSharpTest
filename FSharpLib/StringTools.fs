@@ -8,8 +8,14 @@ open FSharp.Collections.ParallelSeq
 module StringTools =
     let private WordsList = [ "Hello"; "Word"; "Data"; "Table"; "Stream"; "Index" ]
 
-    let private JaroWinklerGetMatch prototype word = (JaroWinkler.GetMatch(prototype, word), prototype)
-    let private Distance = fun (distance, _) -> -distance
+    type JaroWinklerResult = {
+            Distance : double
+            Word : string
+        }
+
+    let private JaroWinklerGetMatch prototype word = 
+        let result = { Distance = JaroWinkler.GetMatch(prototype, word); Word = word }
+        result
 
     let FuzzyMatch (words:string list) =
         let words_set = new HashSet<string>(words)
@@ -18,23 +24,20 @@ module StringTools =
                 for w in words_set.AsParallel() do 
                 select (JaroWinklerGetMatch w word)
             }
-            |> Seq.sortBy Distance
+            |> Seq.sortBy(fun v -> -v.Distance)
+            |> Seq.map(fun v -> v.Word)
             |> Seq.head
-        fun word ->
-            let (_, word) = partial_fuzze_match word
-            word
+        fun word -> partial_fuzze_match word
 
     let WordsListFuzzyMatch = FuzzyMatch WordsList
 
     let FuzzyMathPSeq (words:string list) =
         let words_set = new HashSet<string>(words)
         fun word ->
-            let (_, prototype) = 
-                words_set 
+            words_set 
                 |> PSeq.map(fun w -> JaroWinklerGetMatch w word) 
-                |> PSeq.sortBy Distance 
+                |> PSeq.sortBy(fun v -> -v.Distance) 
+                |> Seq.map(fun v -> v.Word)
                 |> Seq.head
-            prototype
 
     let WordsListFuzzyMatchPSeq = FuzzyMathPSeq WordsList
-
