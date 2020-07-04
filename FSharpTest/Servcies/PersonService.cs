@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 using FSharpTest.Models;
@@ -18,7 +18,7 @@ namespace FSharpLib
                     await using var reader = await cmd.ExecuteReaderAsync();
 
                     if (!await reader.ReadAsync())
-                        throw new InvalidOperationException("Ошибка загрузки данных");
+                        throw new InvalidOperationException("РћС€РёР±РєР° Р·Р°РіСЂСѓР·РєРё РґР°РЅРЅС‹С…");
 
                     var surname = reader["surname"].ToString();
                     var name = reader["name"].ToString();
@@ -36,7 +36,7 @@ namespace FSharpLib
                         await using var reader = await cmd.ExecuteReaderAsync();
 
                         if (!await reader.ReadAsync())
-                            throw new InvalidOperationException("Ошибка загрузки данных");
+                            throw new InvalidOperationException("РћС€РёР±РєР° Р·Р°РіСЂСѓР·РєРё РґР°РЅРЅС‹С…");
 
                         var surname = reader["surname"].ToString();
                         var name = reader["name"].ToString();
