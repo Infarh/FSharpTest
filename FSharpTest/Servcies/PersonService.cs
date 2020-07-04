@@ -9,12 +9,12 @@ namespace FSharpLib
     {
         private const string __SQLCommand = "SELECt * FROM Persons";
         private const string __ConnectionString = "qwe";
-        private static readonly SqlConnection __Connection = new SqlConnection(__ConnectionString);
-        private static readonly Lazy<Task<Person>> __LazyPersonReceiverCurrentContext = 
+        private static readonly Lazy<Task<Person>> __LazyPersonReceiverCurrentContext =
             new Lazy<Task<Person>>(
                 async () =>
                 {
-                    await using var cmd = new SqlCommand(__SQLCommand, __Connection);
+                    await using var connection = new SqlConnection(__ConnectionString);
+                    await using var cmd = new SqlCommand(__SQLCommand, connection);
                     await using var reader = await cmd.ExecuteReaderAsync();
 
                     if (!await reader.ReadAsync())
@@ -26,12 +26,13 @@ namespace FSharpLib
                 }
             );
 
-        private static readonly Lazy<Task<Person>> __LazyPersonReceiverThreadPool = 
+        private static readonly Lazy<Task<Person>> __LazyPersonReceiverThreadPool =
             new Lazy<Task<Person>>(
                 Task.Run(
                     async () =>
                     {
-                        await using var cmd = new SqlCommand(__SQLCommand, __Connection);
+                        await using var connection = new SqlConnection(__ConnectionString);
+                        await using var cmd = new SqlCommand(__SQLCommand, connection);
                         await using var reader = await cmd.ExecuteReaderAsync();
 
                         if (!await reader.ReadAsync())
