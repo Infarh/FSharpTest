@@ -9,8 +9,7 @@ namespace FSharpTest
         static void Main(string[] args)
         {
             
+            
         }
     }
-
-   
 }
