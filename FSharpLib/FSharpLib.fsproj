@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="FAgent.fs" />
     <Compile Include="StringTools.fs" />
     <Compile Include="Memoizer.fs" />
     <Compile Include="FunctionService.fs" />

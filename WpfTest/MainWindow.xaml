@@ -1,18 +1,32 @@
 ﻿<Window x:Class="WpfTest.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" mc:Ignorable="d"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfTest"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        xmlns:l="clr-namespace:WpfTest"
+        xmlns:inf="clr-namespace:WpfTest.Infrastructure"
+        DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}"
+        Title="{Binding Title}"
+        Width="800" Height="450">
     <DockPanel>
-        <DockPanel DockPanel.Dock="Top">
-            <Button DockPanel.Dock="Right" VerticalAlignment="Center" Margin="5,0" Padding="35,5" Click="OnLoadButtonClick">Load</Button>
-            <GroupBox Header="URL">
-                <TextBox Name="UrlInput" Text="https://avatars.mds.yandex.net/get-pdb/2979185/1bcd6dc8-356d-4e87-aba3-fc9e91ccfc81/s1200"/>
-            </GroupBox>
-        </DockPanel>
-        <Image Name="img" Margin="5"/>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Выход" Command="{StaticResource ClosedWindowCommand}"/>
+            </MenuItem>
+        </Menu>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem DockPanel.Dock="Right">
+                <ResizeGrip/>
+            </StatusBarItem>
+            <StatusBarItem Content="{Binding Status}"/>
+        </StatusBar>
+        <Grid>
+            <Grid.Resources>
+                <inf:DataField x:Key="DocumentField"
+                               Source="{Binding Document}"
+                               Destination="{Binding ElementName=TestEdit, Path=Document}"/>
+            </Grid.Resources>
+            <RichTextBox Name="TestEdit"/>
+        </Grid>
     </DockPanel>
 </Window>

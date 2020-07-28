@@ -1,12 +1,13 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Threading.Tasks;
 using FSharpLib;
 
 namespace FSharpTest.Servcies.SignalRStab
 {
-    abstract class ClientConcurrentDictionary : SignalRBase
+    abstract class ClientWithAgents : SignalRBase
     {
-        private readonly AgentOnlineUsers __Connections = new AgentOnlineUsers();
+        private readonly ConcurrentDictionary<Guid, string> _Connections = new ConcurrentDictionary<Guid, string>();
 
         public override Task OnConnected()
         {
@@ -14,7 +15,8 @@ namespace FSharpTest.Servcies.SignalRStab
             var user = Context.User;
             var user_name = user.Identity!.Name;
 
-            __Connections.AddIfNotExists(connection_id, user_name);
+            if (_Connections.TryAdd(connection_id, user_name))
+                RegisterUserConnection(connection_id, user_name);
 
             return base.OnConnected();
         }
@@ -23,7 +25,8 @@ namespace FSharpTest.Servcies.SignalRStab
         {
             var connection_id = new Guid(Context.ConnectionId);
 
-            __Connections.RemoveIfNotExists(connection_id);
+            if (_Connections.TryRemove(connection_id, out var user_name))
+                DeregisterUserConnection(connection_id, user_name);
 
             return base.OnDisconnected();
         }
