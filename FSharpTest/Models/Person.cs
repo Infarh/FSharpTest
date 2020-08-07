@@ -5,8 +5,8 @@
         public string Surname { get; }
         public string Name { get; }
         public int Age { get; }
-        public string FullName => $"{Surname} {Name}";
         public Address Address { get; }
+        public string FullName => $"{Surname} {Name}";
 
         public Person(string Surname, string Name, int Age = 0, Address Address = null)
         {
@@ -15,6 +15,11 @@
             this.Age = Age;
             this.Address = Address;
         }
+
+        public Person WhereSurname(string Surname) => new Person(Surname, Name, Age, Address);
+        public Person WhereName(string Name) => new Person(Surname, Name, Age, Address);
+        public Person WhereAge(int Age) => new Person(Surname, Name, Age, Address);
+        public Person WhereAddress(Address Address) => new Person(Surname, Name, Age, Address);
     }
 
     internal class Address
@@ -29,5 +34,9 @@
             this.City = City;
             this.Street = Street;
         }
+
+        public Address WhereZipCode(string ZipCode) => new Address(ZipCode, City, Street);
+        public Address WhereCity(string City) => new Address(ZipCode, City, Street);
+        public Address WhereStreet(string Street) => new Address(ZipCode, City, Street);
     }
 }
