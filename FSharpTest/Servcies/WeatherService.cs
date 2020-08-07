@@ -6,7 +6,7 @@ using FSharpTest.Models;
 
 namespace FSharpTest.Servcies
 {
-    class WeatherService // Тест
+    internal class WeatherService // Тест
     {
         public static Temperature GetTemperature(string City, params Uri[] Aggresses)
         {

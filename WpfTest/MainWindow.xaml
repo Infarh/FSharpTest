@@ -3,8 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" mc:Ignorable="d"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa="http://schemas.fontawesome.com/icons/"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:l="clr-namespace:WpfTest"
         xmlns:inf="clr-namespace:WpfTest.Infrastructure"
+        xmlns:converters="clr-namespace:WpfTest.Infrastructure.Converters"
+        xmlns:b="clr-namespace:WpfTest.Infrastructure.Behaviors"
         DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}"
         Title="{Binding Title}"
         Width="800" Height="450">
@@ -21,12 +25,18 @@
             <StatusBarItem Content="{Binding Status}"/>
         </StatusBar>
         <Grid>
-            <Grid.Resources>
-                <inf:DataField x:Key="DocumentField"
-                               Source="{Binding Document}"
-                               Destination="{Binding ElementName=TestEdit, Path=Document}"/>
-            </Grid.Resources>
-            <RichTextBox Name="TestEdit"/>
+            <DockPanel>
+                <Button DockPanel.Dock="Top" fa:Awesome.Content="Solid_Plus" Foreground="LimeGreen"
+                        Command="{Binding AddTimeCommand}"/>
+                <ListBox DockPanel.Dock="Right" ItemsSource="{Binding SelectedItems, ElementName=ItemsBox}"
+                         ItemStringFormat="HH:mm:ss"/>
+                <ListBox Name="ItemsBox" ItemsSource="{Binding Times}" SelectionMode="Multiple"
+                         ItemStringFormat="HH:mm:ss">
+                    <i:Interaction.Behaviors>
+                        <b:ScrollToAddedItem SelectNewItem="True" LeaveSelection="True"/>
+                    </i:Interaction.Behaviors>
+                </ListBox>
+            </DockPanel>
         </Grid>
     </DockPanel>
 </Window>

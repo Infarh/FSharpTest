@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
 
 namespace WpfTest.Infrastructure
 {
-    class DataField : Freezable
+    internal class DataField : Freezable
     {
         #region Source : object - Источник
 
@@ -17,7 +18,12 @@ namespace WpfTest.Infrastructure
                 nameof(Source),
                 typeof(object),
                 typeof(DataField),
-                new PropertyMetadata(default(object)));
+                new FrameworkPropertyMetadata(default, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSourceChanged) { DefaultUpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged});
+
+        private static void OnSourceChanged(DependencyObject D, DependencyPropertyChangedEventArgs E)
+        {
+
+        }
 
         /// <summary>Источник</summary>
         //[Category("")]
@@ -34,7 +40,12 @@ namespace WpfTest.Infrastructure
                 nameof(Destination),
                 typeof(object),
                 typeof(DataField),
-                new PropertyMetadata(default(object)));
+                new FrameworkPropertyMetadata(default, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnDestinationChanged) { DefaultUpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged});
+
+        private static void OnDestinationChanged(DependencyObject D, DependencyPropertyChangedEventArgs E)
+        {
+
+        }
 
         /// <summary>Приёмник</summary>
         //[Category("")]
@@ -43,7 +54,7 @@ namespace WpfTest.Infrastructure
 
         #endregion
 
-        public DataField() => BindingOperations.SetBinding(this, DestinationProperty, new Binding(nameof(Source)) { Source = this });
+        //public DataField() => BindingOperations.SetBinding(this, DestinationProperty, new Binding(nameof(Source)) { Source = this });
 
         protected override Freezable CreateInstanceCore() => new DataField();
     }

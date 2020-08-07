@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace FSharpTest.Servcies.SignalRStab
 {
-    abstract class SignalRBase
+    internal abstract class SignalRBase
     {
         protected ConnectionContext Context { get; } = new ConnectionContext();
 

@@ -3,7 +3,7 @@ using CSharpLib;
 
 namespace FSharpTest
 {
-    static class FuncServiceTest
+    internal static class FuncServiceTest
     {
         public static void ComposeTest()
         {

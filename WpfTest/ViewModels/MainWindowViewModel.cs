@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows.Documents;
 using System.Windows.Input;
+using WpfTest.Infrastructure.Commands;
 using WpfTest.ViewModels.Base;
 
 namespace WpfTest.ViewModels
 {
-    class MainWindowViewModel : ViewModel
+    internal class MainWindowViewModel : ViewModel
     {
+        public ObservableCollection<DateTime> Times { get; } = new ObservableCollection<DateTime>();
+
         #region Title : string - Заголовок окна
 
         /// <summary>Заголовок окна</summary>
@@ -44,6 +48,21 @@ namespace WpfTest.ViewModels
             }
         }
 
+
+        #endregion
+
+        #region Команды
+
+        #region Command AddTimeCommand - Добавить время
+
+        /// <summary>Добавить время</summary>
+        private ICommand _AddTimeCommand;
+
+        /// <summary>Добавить время</summary>
+        public ICommand AddTimeCommand => _AddTimeCommand ??= new LambdaCommand(_ => Times.Add(DateTime.Now));
+
+
+        #endregion
 
         #endregion
 

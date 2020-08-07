@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace FSharpTest.Servcies.SignalRStab
 {
-    abstract class ClientImmutableInterlocked : SignalRBase
+    internal abstract class ClientImmutableInterlocked : SignalRBase
     {
         private ImmutableDictionary<Guid, string> _Connections = ImmutableDictionary<Guid, string>.Empty;
 

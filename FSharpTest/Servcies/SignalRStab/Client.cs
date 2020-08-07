@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace FSharpTest.Servcies.SignalRStab
 {
-    abstract class Client : SignalRBase
+    internal abstract class Client : SignalRBase
     {
         private readonly Dictionary<Guid, string> _Connections = new Dictionary<Guid, string>();
 

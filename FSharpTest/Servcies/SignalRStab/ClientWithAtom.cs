@@ -6,7 +6,7 @@ using AlgorithmsLib;
 
 namespace FSharpTest.Servcies.SignalRStab
 {
-    abstract class ClientWithAtom : SignalRBase
+    internal abstract class ClientWithAtom : SignalRBase
     {
         private readonly Atom<ImmutableDictionary<Guid, string>> _Connections =
             new Atom<ImmutableDictionary<Guid, string>>(ImmutableDictionary<Guid, string>.Empty);

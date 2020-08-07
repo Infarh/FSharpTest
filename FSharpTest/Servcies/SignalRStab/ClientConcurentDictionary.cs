@@ -4,7 +4,7 @@ using FSharpLib;
 
 namespace FSharpTest.Servcies.SignalRStab
 {
-    abstract class ClientConcurrentDictionary : SignalRBase
+    internal abstract class ClientConcurrentDictionary : SignalRBase
     {
         private readonly AgentOnlineUsers __Connections = new AgentOnlineUsers();
 

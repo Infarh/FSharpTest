@@ -5,7 +5,7 @@ using FSharpLib;
 
 namespace FSharpTest.Servcies.SignalRStab
 {
-    abstract class ClientWithAgents : SignalRBase
+    internal abstract class ClientWithAgents : SignalRBase
     {
         private readonly ConcurrentDictionary<Guid, string> _Connections = new ConcurrentDictionary<Guid, string>();
 

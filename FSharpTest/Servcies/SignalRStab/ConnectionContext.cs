@@ -4,7 +4,7 @@ using System.Security.Principal;
 
 namespace FSharpTest.Servcies.SignalRStab
 {
-    class ConnectionContext
+    internal class ConnectionContext
     {
         private class PrincipalStab : IPrincipal
         {

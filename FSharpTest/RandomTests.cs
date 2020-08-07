@@ -5,9 +5,9 @@ using System.Text;
 
 namespace FSharpTest
 {
-    static class RandomTests
+    internal static class RandomTests
     {
-        class RND
+        private class RND
         {
             private static readonly double __K = Math.Sqrt(12);
             private readonly Random _Rnd = new Random();
