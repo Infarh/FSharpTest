@@ -26,8 +26,30 @@
         </StatusBar>
         <Grid>
             <DockPanel>
-                <Button DockPanel.Dock="Top" fa:Awesome.Content="Solid_Plus" Foreground="LimeGreen"
-                        Command="{Binding AddTimeCommand}"/>
+                <Button Name="AddButton" DockPanel.Dock="Top" fa:Awesome.Content="Solid_Plus" Foreground="LimeGreen" Command="{Binding AddTimeCommand}">
+                    <Button.Triggers>
+                        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                            <BeginStoryboard>
+                                <BeginStoryboard.Storyboard>
+                                    <Storyboard>
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetName="AddButton"
+                                                                      Storyboard.TargetProperty="Foreground.(SolidColorBrush.Color)"
+                                                                      RepeatBehavior="Forever">
+                                            <ColorAnimationUsingKeyFrames.KeyFrames>
+                                                <EasingColorKeyFrame KeyTime="0:0:0.1" Value="DarkRed"/>
+                                                <EasingColorKeyFrame KeyTime="0:0:0.2" Value="Yellow"/>
+                                                <EasingColorKeyFrame KeyTime="0:0:0.5" Value="Yellow"/>
+                                                <EasingColorKeyFrame KeyTime="0:0:0.6" Value="Red"/> 
+                                                <EasingColorKeyFrame KeyTime="0:0:0.8" Value="Yellow"/>
+                                                <EasingColorKeyFrame KeyTime="0:0:3" Value="Transparent"/>
+                                            </ColorAnimationUsingKeyFrames.KeyFrames>
+                                        </ColorAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard.Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Button.Triggers>
+                </Button>
                 <ListBox DockPanel.Dock="Right" ItemsSource="{Binding SelectedItems, ElementName=ItemsBox}"
                          ItemStringFormat="HH:mm:ss"/>
                 <ListBox Name="ItemsBox" ItemsSource="{Binding Times}" SelectionMode="Multiple"

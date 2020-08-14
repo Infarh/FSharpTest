@@ -1,0 +1,21 @@
+﻿<Window x:Class="WpfTest.Views.Windows.BlueWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" mc:Ignorable="d"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:l="clr-namespace:WpfTest.Views.Windows"
+        Title="BlueWindow"
+        Style="{StaticResource BlueWindowStyle}"
+        Topmost="True"
+        Width="600" Height="300">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Themes/BlueWindow.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Button VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,10" Content="Test" Padding="60,15"/>
+    </Grid>
+</Window>
